@@ -28,6 +28,7 @@ class Form extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { userName: '' };
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	handleSubmit(event) {
   	event.preventDefault();
@@ -40,7 +41,7 @@ class Form extends React.Component {
 
 	render() {
   	return (
-    	<form onSubmit={this.handleSubmit.bind(this)}>
+    	<form onSubmit={this.handleSubmit}>
       	<input type="text"
         	value={this.state.userName}
           onChange={(event) => this.setState({ userName: event.target.value })}
@@ -56,6 +57,7 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { cards: [] };
+		this.addNewCard = this.addNewCard.bind(this);
 	}
   addNewCard(cardInfo) {
   	this.setState((prevState) => ({
@@ -66,7 +68,7 @@ class App extends React.Component {
 	render() {
   	return (
     	<div>
-        <Form onSubmit={this.addNewCard.bind(this)} />
+        <Form onSubmit={this.addNewCard} />
         <CardList cards={this.state.cards} />
       </div>
     );
